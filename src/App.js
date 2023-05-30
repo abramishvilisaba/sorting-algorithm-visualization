@@ -31,7 +31,7 @@ export default function SortingVisualizer() {
   const minSpeed = 10;
   const maxSpeed = 200;
   const height = 850;
-  const width1 = 800;
+  const width1 = 900;
   const width2 = 1200;
   // https://codingbeautydev.com/blog/react-get-window-width-height/
   // https://github.com/CodingTrain/Coding-Challenges/tree/2a9d68112b1aa80cbd5aa303f1d97dda7b045fde/143_QuickSort
@@ -114,9 +114,12 @@ export default function SortingVisualizer() {
     setArray([]);
     setArray(array);
   }
+  useEffect(() => {
+    fillArr2();
+  }, [selectedMaxHeight]);
 
   useEffect(() => {
-    fillArr();
+    fillArr2();
   }, [size]);
   //
   async function colorChange(position, color, revert = true) {
@@ -258,9 +261,12 @@ export default function SortingVisualizer() {
     return (
       <div
         class={
-          "w-screen min-w-max  min-h-[500px] h-fit pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
+          "w-screen min-w-max  min-h-[90%] h-fit pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
         }
-        style={{ paddingTop: `${100 * (windowSize[1] / 1080)}px` }}
+        style={{
+          paddingTop: `${100 * (windowSize[1] / 1080)}px`,
+          alignItems: displaySwitch === "cells" ? "center" : "end",
+        }}
       >
         {array.map((value, id) => (
           <div
@@ -281,7 +287,12 @@ export default function SortingVisualizer() {
               displaySwitch === "columns"
                 ? {
                     backgroundColor: selectedColors[id % selectedColors.length],
-                    height: `${value * heightRatio}px`,
+                    // height: `${value * heightRatio}px`,
+                    height: `${
+                      selectedMaxHeight > selectedMinHeight
+                        ? (value / (selectedMaxHeight / 750)) * heightRatio
+                        : (value / (selectedMinHeight / 750)) * heightRatio
+                    }px`,
                     // height: "50px",
                     width: `${
                       size >= 20
