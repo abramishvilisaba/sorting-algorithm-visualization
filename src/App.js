@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 export default function SortingVisualizer() {
   const [array, setArray] = useState([]);
-  const [size, setSize] = useState(20);
+  const [size, setSize] = useState(15);
   const [width, setWidth] = useState(6);
   const [selectedSpeed, setSelectedSpeed] = useState(70);
   const [speed, setSpeed] = useState(70);
@@ -27,7 +27,7 @@ export default function SortingVisualizer() {
   const colorIndex = "#3083DC";
   const colorPivot = "#4B56D2";
   const minSize = 10;
-  const maxSize = 100;
+  const maxSize = 50;
   const minSpeed = 10;
   const maxSpeed = 200;
   const height = 850;
