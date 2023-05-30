@@ -410,6 +410,7 @@ export default function SortingVisualizer() {
               placeholder="hehe"
               min={minSize}
               max={maxSize}
+              g
               step="1"
               class={"mx-2 hover:cursor-pointer w-20 lg:w-28"}
               value={size}
