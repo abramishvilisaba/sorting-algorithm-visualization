@@ -4,8 +4,8 @@ export default function SortingVisualizer() {
   const [array, setArray] = useState([]);
   const [size, setSize] = useState(15);
   const [width, setWidth] = useState(6);
-  const [selectedSpeed, setSelectedSpeed] = useState(70);
-  const [speed, setSpeed] = useState(70);
+  const [selectedSpeed, setSelectedSpeed] = useState(100);
+  const [speed, setSpeed] = useState(50);
   const [active, setActive] = useState(false);
   const [minHeight, setMinHeight] = useState(100);
   const [maxHeight, setMaxHeight] = useState(850);
