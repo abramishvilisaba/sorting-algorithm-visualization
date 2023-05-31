@@ -179,10 +179,11 @@ export default function SortingVisualizer() {
 
         if (i === rand) {
           rand = j;
-        }
-        if (j === rand) {
+        } else if (j === rand) {
           rand = i;
         }
+        await colorChange(rand, colorPivot, false);
+
         await Promise.all([
           colorChange(i, colorISwap, true),
           colorChange(j, colorJSwap, true),
@@ -308,8 +309,8 @@ export default function SortingVisualizer() {
                     // height: "50px",
                     width: `${
                       size >= 20
-                        ? (1000 / size) * widthRatio
-                        : (1000 / size) * widthRatio
+                        ? (width2 / size) * widthRatio
+                        : (width2 / size) * widthRatio
                     }px`,
                     margin: `0px ${(300 / size / 3) * widthRatio}px`,
                     alignItems: "center",
