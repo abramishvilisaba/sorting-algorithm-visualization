@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+// import Navbar from "./components/Navbar";
 
 export default function SortingVisualizer() {
   const [array, setArray] = useState([]);
@@ -130,6 +131,7 @@ export default function SortingVisualizer() {
         let bar = document.getElementById(position).style;
         if (bar !== "") {
           bar.backgroundColor = color;
+          // bar.borderColor = "blue";
         }
         if (revert === true) {
           await sleep(speed);
@@ -270,40 +272,40 @@ export default function SortingVisualizer() {
 
   // https://www.geeksforgeeks.org/bubble-sort-algorithms-by-using-javascript/
 
-  function render() {
-    return (
-      <div
-        class={
-          "w-screen min-w-max   h-fit pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center"
-        }
-        style={{ paddingTop: `${100 * (windowSize[1] / 1080)}px` }}
-      >
-        {array.map((value, id) => (
-          <div
-            className="array-bar"
-            id={id}
-            key={id}
-            style={{
-              backgroundColor: selectedColors[id % selectedColors.length],
-              height: `${(value * windowSize[1]) / 1080}px`,
-              // height: "50px",
-              width: `${((selectedWidth / size) * windowSize[0]) / 1920}px`,
-              margin: `0px ${((700 / size / 2) * windowSize[0]) / 1920}px`,
-            }}
-            // class={" bg-black"}
-          >
-            {value}
-          </div>
-        ))}
-      </div>
-    );
-  }
+  // function render() {
+  //   return (
+  //     <div
+  //       class={
+  //         "w-screen min-w-max   h-fit pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center"
+  //       }
+  //       style={{ paddingTop: `${100 * (windowSize[1] / 1080)}px` }}
+  //     >
+  //       {array.map((value, id) => (
+  //         <div
+  //           className="array-bar"
+  //           id={id}
+  //           key={id}
+  //           style={{
+  //             backgroundColor: selectedColors[id % selectedColors.length],
+  //             height: `${(value * windowSize[1]) / 1080}px`,
+  //             // height: "50px",
+  //             width: `${((selectedWidth / size) * windowSize[0]) / 1920}px`,
+  //             margin: `0px ${((700 / size / 2) * windowSize[0]) / 1920}px`,
+  //           }}
+  //           // class={" bg-black"}
+  //         >
+  //           {value}
+  //         </div>
+  //       ))}
+  //     </div>
+  //   );
+  // }
 
   function render2() {
     return (
       <div
         class={
-          "w-screen min-w-max  min-h-[90%] h-fit pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
+          "w-[100%] min-w-max  min-h-[90%] h-fit pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
         }
         style={{
           paddingTop: `${100 * (windowSize[1] / 1080)}px`,
@@ -415,98 +417,106 @@ export default function SortingVisualizer() {
     return (
       <div
         class={
-          " h-fit min-h-20 w-100% py-3 px-2 lg:py-4 lg:px-2  bg-[#54BAB9] flex flex-row justify-center flex-wrap gap-0  md:gap-4"
+          " h-fit min-h-20 w-[100%] py-4  xl:py-4   bg-[#54BAB9] flex flex-row justify-center flex-wrap gap-0  sm:gap-4"
         }
       >
-        <div class={"flex justify-between "}>
-          <div class={" navBarText flex flex-row items-center  "}>
-            <input
-              type="radio"
-              id="columns"
-              name="displaySelector"
-              value="columns"
-              onChange={(e) => {
-                setDisplaySwitch(e.target.value);
-              }}
-            />
-            <label for="columns" class={"mr-2 ml-1"}>
-              columns
-            </label>
-            <input
-              type="radio"
-              id="cells"
-              name="displaySelector"
-              value={"cells"}
-              onChange={(e) => {
-                setDisplaySwitch(e.target.value);
-              }}
-            />
-            <label for="cells" class={"mr-2 ml-1"}>
-              cells
-            </label>
+        {/* row1 */}
+        <div class={"flex justify-between  mx-4 w-fit sm:w-fit gap-2 md:gap-4"}>
+          <div class={" navBarContainer "}>
+            <div>
+              <input
+                type="radio"
+                id="columns"
+                name="displaySelector"
+                value="columns"
+                onChange={(e) => {
+                  setDisplaySwitch(e.target.value);
+                }}
+              />
+              <label for="columns" class={"mr-2 ml-1"}>
+                columns
+              </label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="cells"
+                name="displaySelector"
+                value={"cells"}
+                onChange={(e) => {
+                  setDisplaySwitch(e.target.value);
+                }}
+              />
+              <label for="cells" class={"mr-2 ml-1"}>
+                cells
+              </label>
+            </div>
           </div>
-          <div
-            class={
-              "flex mx-0 flex-row items-center text-white text-lg font-semibold "
-            }
-          >
-            Interval
-            <input
-              type="input"
-              // placeholder="100"
-              defaultValue={100}
-              class={
-                "ml-2 mr-1 hover:cursor-pointer max-w-fit w-14 bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
-              }
-              value={selectedMinHeight}
-              onChange={(e) => {
-                changeMinHeight(e);
-              }}
-            ></input>
-            -
-            <input
-              type="input"
-              // placeholder="850"
-              defaultValue={850}
-              class={
-                "mr-2 ml-1 hover:cursor-pointer max-w-fit w-14  bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
-              }
-              value={selectedMaxHeight}
-              onChange={(e) => {
-                changeMaxHeight(e);
-              }}
-            ></input>
+          <div class={"navBarContainer text-xl font-semibold gap-2 "}>
+            <p> Interval</p>
+            <div class="flex flex-row">
+              <input
+                type="input"
+                // placeholder="100"
+                defaultValue={100}
+                class={
+                  " mr-1 hover:cursor-pointer max-w-fit w-12 sm:w-16 bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
+                }
+                value={selectedMinHeight}
+                onChange={(e) => {
+                  changeMinHeight(e);
+                }}
+              ></input>
+              -
+              <input
+                type="input"
+                // placeholder="850"
+                defaultValue={850}
+                class={
+                  " ml-1 hover:cursor-pointer max-w-fit w-12 sm:w-16  bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
+                }
+                value={selectedMaxHeight}
+                onChange={(e) => {
+                  changeMaxHeight(e);
+                }}
+              ></input>
+            </div>
           </div>
           <button
-            class={"lg:mx-2 navBarText text-base"}
+            class={"xl:mx-2 navBarContainer text-base"}
             onClick={() => newArr()}
           >
             New Array
           </button>
         </div>
-        <div class={"flex pt-2 md:pt-0 justify-between"}>
-          <div class={"navBarText flex mx-0 flex-row items-center  "}>
-            size
+        {/* row2 */}
+        <div
+          class={
+            "flex pt-2 sm:pt-0 justify-between mx-4 w-fit sm:w-fit gap-2 md:gap-4"
+          }
+        >
+          <div class={"navBarContainer flex mx-0 flex-row items-center  "}>
+            <p class="mr-2">size</p>
             <input
               type="range"
               placeholder="hehe"
               min={minSize}
               max={maxSize}
               step="1"
-              class={"mx-2 hover:cursor-pointer w-20 lg:w-28"}
+              class={"mx-0 hover:cursor-pointer w-20 xl:w-28"}
               value={size}
               onChange={(e) => changeSize(e)}
             ></input>
           </div>
-          <div class={" navBarText flex mx-0 flex-row items-center  "}>
-            speed
+          <div class={" navBarContainer flex mx-0 flex-row items-center  "}>
+            <p class="mr-2">speed</p>
             <input
               type="range"
               placeholder="hehe"
               min={minSpeed}
               max={maxSpeed}
               step="1"
-              class={"mx-2 hover:cursor-pointer w-20 lg:w-28"}
+              class={"mx-0 hover:cursor-pointer w-20 xl:w-28"}
               value={selectedSpeed}
               onChange={(e) => {
                 changeSpeed(e);
@@ -514,33 +524,35 @@ export default function SortingVisualizer() {
               }}
             ></input>
           </div>
-
-          <button
-            class={"navBarText lg:mx-4"}
-            onClick={() => {
-              start(array, 0, array.length - 1);
-              //quickSort(array, 0, array.length - 1);
-            }}
-          >
-            Quick Sort
-          </button>
-          <button
-            class={"navBarText lg:mx-4"}
-            onClick={() => {
-              bubbleSort(array);
-              //quickSort(array, 0, array.length - 1);
-            }}
-          >
-            Bubble Sort
-          </button>
+          <div class={"navBarContainer flex mx-0 flex-row items-center  "}>
+            <button
+              class={"navBarContainer "}
+              onClick={() => {
+                start(array, 0, array.length - 1);
+                //quickSort(array, 0, array.length - 1);
+              }}
+            >
+              Quick Sort
+            </button>
+          </div>
+          <div class={"navBarContainer flex mx-0 flex-row items-center  "}>
+            <button
+              class={"navBarContainer "}
+              onClick={() => {
+                bubbleSort(array);
+                //quickSort(array, 0, array.length - 1);
+              }}
+            >
+              Bubble Sort
+            </button>
+          </div>
         </div>
-        <div class={"flex pt-2 md:pt-0"}></div>
       </div>
     );
   }
 
   return (
-    <div class={"w-fit flex flex-col h-screen bg-sky-100 "}>
+    <div class={"w-screen flex flex-col h-screen bg-sky-100 "}>
       {NavBar()}
       {render2()}
     </div>
