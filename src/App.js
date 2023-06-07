@@ -305,7 +305,7 @@ export default function SortingVisualizer() {
     return (
       <div
         class={
-          "w-[100%] min-w-max  min-h-[90%] h-fit pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
+          "w-screen box-border  min-h-[90%] h-fit pt-4 md:pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
         }
         style={{
           paddingTop: `${100 * (windowSize[1] / 1080)}px`,
@@ -552,7 +552,7 @@ export default function SortingVisualizer() {
   }
 
   return (
-    <div class={"w-screen flex flex-col h-screen bg-sky-100 "}>
+    <div class={"w-screen flex flex-col h-screen bg-sky-100 box-border"}>
       {NavBar()}
       {render2()}
     </div>
