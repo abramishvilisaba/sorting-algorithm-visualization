@@ -21,9 +21,11 @@ export default function SortingVisualizer() {
   const colors5 = ["#00a9e2"];
   const selectedColors = colors5;
   const colorI = "#2166b0";
-  const colorISwap = "#2A177F";
+  const colorISwap = "#173A80";
   const colorJ = "#2166b0";
-  const colorJSwap = "#2A177F";
+  const colorJSwap = "#173A80";
+  //#173A80
+  //#2A177F
   const colorIndex = "#3083DC";
   const colorPivot = "#4B56D2";
   const minSize = 10;
