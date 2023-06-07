@@ -305,10 +305,12 @@ export default function SortingVisualizer() {
     return (
       <div
         class={
-          "w-screen box-border  min-h-[90%] h-fit pt-4 md:pt-8 pb-8 lg:pt-[5%] lg:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
+          "w-screen box-border  min-h-[90%] h-fit pt-0 sm:pt-[10%] pb-36 md:pb-24 bg-sky-100  flex flex-row items-end justify-center align-middle"
         }
         style={{
-          paddingTop: `${100 * (windowSize[1] / 1080)}px`,
+          // paddingBottom: `${100 * (windowSize[1] / 1080)}px`,
+          // paddingTop: `${100 * (windowSize[1] / 1080)}px`,
+
           alignItems: displaySwitch === "cells" ? "center" : "end",
         }}
       >
