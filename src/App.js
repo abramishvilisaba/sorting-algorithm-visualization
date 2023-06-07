@@ -171,11 +171,7 @@ export default function SortingVisualizer() {
       ]);
 
       if (i <= j) {
-        // await Promise.all([
-        //   colorChange(i, colorISwap, true),
-        //   colorChange(j, colorJSwap, true),
-        // ]);
-        await swap(items, i, j); //sawpping two elements
+        await swap(items, i, j);
 
         if (i === rand) {
           rand = j;
@@ -189,20 +185,17 @@ export default function SortingVisualizer() {
           colorChange(j, colorJSwap, true),
         ]);
 
-        // await colorChange(i, colorISwap, true);
-        // await colorChange(j, colorJSwap, true);
         i++;
         j--;
-        // setArray([items]);
-        await sleep(100);
+        await sleep(speed);
         console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        let arr = [];
-        arr = [...array, items];
-        if (arr.length > items.length) {
-          arr.pop();
+        let fullArr = [];
+        fullArr = [...array, items];
+        if (fullArr.length > items.length) {
+          fullArr.pop();
         }
 
-        setArray(arr);
+        setArray(fullArr);
       }
     }
     await colorChange(rand, selectedColors, true);
@@ -226,8 +219,54 @@ export default function SortingVisualizer() {
     // console.log(items);
     return items;
   }
+  async function bubbleSort(arr) {
+    var i, j;
+    var len = arr.length;
 
-  //
+    var isSwapped = false;
+
+    for (i = 0; i < len; i++) {
+      isSwapped = false;
+
+      for (j = 0; j < len; j++) {
+        await Promise.all([
+          colorChange(j, colorI, true),
+          // colorChange(j, colorJSwap, true),
+        ]);
+        if (arr[j] > arr[j + 1]) {
+          // await Promise.all([
+          //   colorChange(j, colorI, true),
+          //   // colorChange(j, colorJSwap, true),
+          // ]);
+
+          var temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+          isSwapped = true;
+          await Promise.all([
+            colorChange(j + 1, colorISwap, true),
+            colorChange(j, colorJSwap, true),
+          ]);
+          // await sleep(1000);
+          let fullArr = [];
+          fullArr = [...array, arr];
+          if (fullArr.length > arr.length) {
+            fullArr.pop();
+          }
+
+          setArray(fullArr);
+        }
+      }
+
+      // IF no two elements were swapped
+      // by inner loop, then break
+      if (!isSwapped) {
+        break;
+      }
+    }
+  }
+
+  // https://www.geeksforgeeks.org/bubble-sort-algorithms-by-using-javascript/
 
   function render() {
     return (
@@ -374,77 +413,11 @@ export default function SortingVisualizer() {
     return (
       <div
         class={
-          " h-fit min-h-20 w-100% py-3 px-2 lg:py-4 lg:px-2  bg-[#54BAB9] flex flex-row justify-center flex-wrap "
+          " h-fit min-h-20 w-100% py-3 px-2 lg:py-4 lg:px-2  bg-[#54BAB9] flex flex-row justify-center flex-wrap gap-0  md:gap-4"
         }
       >
-        <div class={"flex "}>
-          <div
-            class={
-              "flex mx-2 flex-row items-center text-white text-lg font-semibold "
-            }
-          >
-            Interval
-            <input
-              type="input"
-              // placeholder="100"
-              defaultValue={100}
-              class={
-                "ml-2 mr-1 hover:cursor-pointer max-w-fit w-16 px-2 bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base"
-              }
-              value={selectedMinHeight}
-              onChange={(e) => {
-                changeMinHeight(e);
-              }}
-            ></input>
-            -
-            <input
-              type="input"
-              // placeholder="850"
-              defaultValue={850}
-              class={
-                "mr-2 ml-1 hover:cursor-pointer max-w-fit w-16 px-2 bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base"
-              }
-              value={selectedMaxHeight}
-              onChange={(e) => {
-                changeMaxHeight(e);
-              }}
-            ></input>
-          </div>
-          <button class={"lg:mx-4 navBarText"} onClick={() => newArr()}>
-            Create New Array
-          </button>
-        </div>
-        <div class={"flex pt-2 md:pt-0"}>
-          <div class={"navBarText flex mx-2 flex-row items-center  "}>
-            size
-            <input
-              type="range"
-              placeholder="hehe"
-              min={minSize}
-              max={maxSize}
-              step="1"
-              class={"mx-2 hover:cursor-pointer w-20 lg:w-28"}
-              value={size}
-              onChange={(e) => changeSize(e)}
-            ></input>
-          </div>
-          <div class={" navBarText flex mx-2 flex-row items-center  "}>
-            speed
-            <input
-              type="range"
-              placeholder="hehe"
-              min={minSpeed}
-              max={maxSpeed}
-              step="1"
-              class={"mx-2 hover:cursor-pointer w-20 lg:w-28"}
-              value={selectedSpeed}
-              onChange={(e) => {
-                changeSpeed(e);
-                // setSelectedSpeed(e.target.value)
-              }}
-            ></input>
-          </div>
-          <div class={" navBarText flex mx-2 flex-row items-center  "}>
+        <div class={"flex justify-between "}>
+          <div class={" navBarText flex flex-row items-center  "}>
             <input
               type="radio"
               id="columns"
@@ -470,6 +443,75 @@ export default function SortingVisualizer() {
               cells
             </label>
           </div>
+          <div
+            class={
+              "flex mx-0 flex-row items-center text-white text-lg font-semibold "
+            }
+          >
+            Interval
+            <input
+              type="input"
+              // placeholder="100"
+              defaultValue={100}
+              class={
+                "ml-2 mr-1 hover:cursor-pointer max-w-fit w-14 bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
+              }
+              value={selectedMinHeight}
+              onChange={(e) => {
+                changeMinHeight(e);
+              }}
+            ></input>
+            -
+            <input
+              type="input"
+              // placeholder="850"
+              defaultValue={850}
+              class={
+                "mr-2 ml-1 hover:cursor-pointer max-w-fit w-14  bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
+              }
+              value={selectedMaxHeight}
+              onChange={(e) => {
+                changeMaxHeight(e);
+              }}
+            ></input>
+          </div>
+          <button
+            class={"lg:mx-2 navBarText text-base"}
+            onClick={() => newArr()}
+          >
+            New Array
+          </button>
+        </div>
+        <div class={"flex pt-2 md:pt-0 justify-between"}>
+          <div class={"navBarText flex mx-0 flex-row items-center  "}>
+            size
+            <input
+              type="range"
+              placeholder="hehe"
+              min={minSize}
+              max={maxSize}
+              step="1"
+              class={"mx-2 hover:cursor-pointer w-20 lg:w-28"}
+              value={size}
+              onChange={(e) => changeSize(e)}
+            ></input>
+          </div>
+          <div class={" navBarText flex mx-0 flex-row items-center  "}>
+            speed
+            <input
+              type="range"
+              placeholder="hehe"
+              min={minSpeed}
+              max={maxSpeed}
+              step="1"
+              class={"mx-2 hover:cursor-pointer w-20 lg:w-28"}
+              value={selectedSpeed}
+              onChange={(e) => {
+                changeSpeed(e);
+                // setSelectedSpeed(e.target.value)
+              }}
+            ></input>
+          </div>
 
           <button
             class={"navBarText lg:mx-4"}
@@ -480,7 +522,17 @@ export default function SortingVisualizer() {
           >
             Quick Sort
           </button>
+          <button
+            class={"navBarText lg:mx-4"}
+            onClick={() => {
+              bubbleSort(array);
+              //quickSort(array, 0, array.length - 1);
+            }}
+          >
+            Bubble Sort
+          </button>
         </div>
+        <div class={"flex pt-2 md:pt-0"}></div>
       </div>
     );
   }
