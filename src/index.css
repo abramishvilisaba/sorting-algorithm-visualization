@@ -2,21 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-.navBarText {
+@layer components {
+  .button {
+    @apply text-[white] p-2 text-lg leading-7 flex flex-wrap justify-center
+     items-center font-semibold rounded-md shadow-md hover:bg-[#1D4880] focus:outline-white 
+     focus:ring-2 focus:ring-white focus:ring-opacity-75;
+  }
+  .navBarContainer {
+    @apply text-[white] text-lg leading-7 font-medium flex flex-wrap justify-center items-center;
+  }
+  .navBarText {
+    @apply text-[white] text-lg leading-7 font-medium flex-wrap justify-center;
+  }
+  .input {
+    @apply py-1 hover:cursor-pointer max-w-fit w-12 sm:w-16 bg-[#1D4880] border-solid border-white border-2  rounded-sm outline-none text-base text-center;
+  }
+  .displaySelector {
+    @apply flex justify-between  mx-4 w-fit sm:w-fit gap-2 md:gap-4 text-base text-center;
+  }
+}
+/* bg-[#54BAB9] */
+/* .navBarText {
   color: white;
-  font-size: 1.125rem /* 18px */;
-  line-height: 1.75rem /* 28px */;
+  font-size: 1.125rem
+  line-height: 1.75rem
   font-weight: 500;
   flex-wrap: wrap;
   justify-content: center;
 }
 .navBarContainer {
   color: white;
-  font-size: 1.125rem /* 18px */;
-  line-height: 1.75rem /* 28px */;
+  font-size: 1.125rem
+  line-height: 1.75rem 
   font-weight: 500;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
+ */

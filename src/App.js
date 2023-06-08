@@ -30,12 +30,13 @@ export default function SortingVisualizer() {
   const colorIndex = "#3083DC";
   const colorPivot = "#4B56D2";
   const minSize = 10;
-  const maxSize = 50;
+  const maxSize = 100;
   const minSpeed = 10;
   const maxSpeed = 200;
   const height = 850;
   const width1 = 900;
   const width2 = 1200;
+
   // https://codingbeautydev.com/blog/react-get-window-width-height/
   // https://github.com/CodingTrain/Coding-Challenges/tree/2a9d68112b1aa80cbd5aa303f1d97dda7b045fde/143_QuickSort
   console.log("-------------------------------------");
@@ -49,7 +50,8 @@ export default function SortingVisualizer() {
     // setSpeed(
     //   (maxSpeed - selectedSpeed) / ((size / 100) * (size / 100) * (size / 100))
     // );
-    setSpeed((maxSpeed - selectedSpeed) / ((size / 50) * (size / 50)));
+    // setSpeed((maxSpeed - selectedSpeed) / ((size / 50) * (size / 50)));
+    setSpeed((maxSpeed - selectedSpeed) / (size / 50));
   }, [selectedSpeed, size]);
   //
   useEffect(() => {
@@ -419,12 +421,12 @@ export default function SortingVisualizer() {
     return (
       <div
         class={
-          " h-fit min-h-20 w-[100%] py-4  xl:py-4   bg-[#54BAB9] flex flex-row justify-center flex-wrap gap-0  sm:gap-4"
+          " h-fit min-h-20 w-[100%] py-4  xl:py-4   bg-[#334F7F] flex flex-row justify-center flex-wrap gap-0  sm:gap-4"
         }
       >
         {/* row1 */}
         <div class={"flex justify-between  mx-4 w-fit sm:w-fit gap-2 md:gap-4"}>
-          <div class={" navBarContainer "}>
+          <div class={" navBarContainer gap-2"}>
             <div>
               <input
                 type="radio"
@@ -434,6 +436,7 @@ export default function SortingVisualizer() {
                 onChange={(e) => {
                   setDisplaySwitch(e.target.value);
                 }}
+                checked={displaySwitch === "columns"}
               />
               <label for="columns" class={"mr-2 ml-1"}>
                 columns
@@ -448,8 +451,9 @@ export default function SortingVisualizer() {
                 onChange={(e) => {
                   setDisplaySwitch(e.target.value);
                 }}
+                checked={displaySwitch === "cells"}
               />
-              <label for="cells" class={"mr-2 ml-1"}>
+              <label for="cells" class={"mr-2 ml-1 "}>
                 cells
               </label>
             </div>
@@ -462,20 +466,23 @@ export default function SortingVisualizer() {
                 // placeholder="100"
                 defaultValue={100}
                 class={
-                  " mr-1 hover:cursor-pointer max-w-fit w-12 sm:w-16 bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
+                  "input"
+                  // " mr-1 py-1 hover:cursor-pointer max-w-fit w-12 sm:w-16 bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
                 }
                 value={selectedMinHeight}
                 onChange={(e) => {
                   changeMinHeight(e);
                 }}
               ></input>
-              -
+              <p class="mx-1"> -</p>
+
               <input
                 type="input"
                 // placeholder="850"
                 defaultValue={850}
                 class={
-                  " ml-1 hover:cursor-pointer max-w-fit w-12 sm:w-16  bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
+                  "input"
+                  // " ml-1 py-1 hover:cursor-pointer max-w-fit w-12 sm:w-16  bg-[#54BAB9] border-solid border-white border-2  rounded-sm outline-none text-base text-center"
                 }
                 value={selectedMaxHeight}
                 onChange={(e) => {
@@ -484,10 +491,7 @@ export default function SortingVisualizer() {
               ></input>
             </div>
           </div>
-          <button
-            class={"xl:mx-2 navBarContainer text-base"}
-            onClick={() => newArr()}
-          >
+          <button class={"button"} onClick={() => newArr()}>
             New Array
           </button>
         </div>
@@ -528,7 +532,7 @@ export default function SortingVisualizer() {
           </div>
           <div class={"navBarContainer flex mx-0 flex-row items-center  "}>
             <button
-              class={"navBarContainer "}
+              class={"button"}
               onClick={() => {
                 start(array, 0, array.length - 1);
                 //quickSort(array, 0, array.length - 1);
@@ -539,7 +543,7 @@ export default function SortingVisualizer() {
           </div>
           <div class={"navBarContainer flex mx-0 flex-row items-center  "}>
             <button
-              class={"navBarContainer "}
+              class={"button"}
               onClick={() => {
                 bubbleSort(array);
                 //quickSort(array, 0, array.length - 1);
@@ -552,6 +556,18 @@ export default function SortingVisualizer() {
       </div>
     );
   }
+  // const buttonStyle = "navBarContainer p-2 border-2";
+  // const navBarContainer=""
+  // .navBarContainer {
+  //   color: white;
+  //   font-size: 1.125rem /* 18px */;
+  //   line-height: 1.75rem /* 28px */;
+  //   font-weight: 500;
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
 
   return (
     <div class={"w-screen flex flex-col h-screen bg-sky-100 box-border"}>
