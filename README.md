@@ -1,6 +1,6 @@
 # Sorting Algorithm Visualizer
 
-  This project is a web application that visualizes sorting algorithms by displaying an array of numbers as columns or cells, and animating the process of sorting using either the QuickSort or MergeSort algorithm. Users can adjust various settings to customize the visualization and gain insights into how sorting algorithms work.
+    This project is a web application that visualizes sorting algorithms by displaying an array of numbers as columns or cells, and animating the process of sorting using either the QuickSort or MergeSort algorithm. Users can adjust various settings to customize the visualization and gain insights into how sorting algorithms work.
 
 ## Features
 
