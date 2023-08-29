@@ -12,6 +12,10 @@ This project is a web application that visualizes sorting algorithms by displayi
 
 - **Visualization Modes**: Users can choose between two visualization modes: displaying numbers as columns or cells, enhancing the learning experience.
 
+### Screenshot
+
+![Screenshot](./screenshot.jpg)
+
 ## How to Use
 
 1. Open the Sorting Algorithm Visualizer in your browser.
