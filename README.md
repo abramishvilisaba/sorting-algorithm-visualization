@@ -2,6 +2,9 @@
 
 This project is a web application that visualizes sorting algorithms by displaying an array of numbers as columns or cells, and animating the process of sorting using either the QuickSort or MergeSort algorithm. Users can adjust various settings to customize the visualization and gain insights into how sorting algorithms work.
 
+![App Preview](./screenshot.jpg)
+
+
 ## Features
 
 - **Algorithm Selection**: Users can choose between QuickSort and MergeSort algorithms to visualize their sorting mechanisms.
@@ -11,10 +14,6 @@ This project is a web application that visualizes sorting algorithms by displayi
 - **Animation Speed Control**: Users can adjust the speed of the animation to see the sorting process in real-time.
 
 - **Visualization Modes**: Users can choose between two visualization modes: displaying numbers as columns or cells, enhancing the learning experience.
-
-### Screenshot
-
-![Screenshot](./screenshot.jpg)
 
 ## How to Use
 
