@@ -49,7 +49,7 @@ This application is intended for educational purposes to help users better under
 ## Author
 
 - GitHub: [abramishvilisaba](https://github.com/abramishvilisaba)
-- 
+
 ## Contributing
 
 Contributions to this project are welcome! If you find a bug or have suggestions for improvements, please feel free to open an issue or submit a pull request.
